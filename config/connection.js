@@ -1,11 +1,18 @@
 // Connect Node to MySQL.
 var mysql = require('mysql');
+var connection;
 
 // Export the Connection.
-module.exports = mysql.createConnection ( {
-	host: "localhost",
-	port: 3000,
-	user: root,
-	password: "Iwsi2017!",
-	database: ""
-});
+if (process.env.JAWSDB_URL) {
+	connection = mysql.createConnection(process.env.JAWSDB_URL);
+}
+else {
+	connection = mysql.createConnection ( {
+		host: "localhost",
+		user: root,
+		password: "",
+		database: "burgers_db"
+	});
+}
+
+module.exports = connection;
